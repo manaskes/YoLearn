@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight, Video, Phone, Settings } from 'lucide-react'
+import { ChevronRight, Video, Phone, Settings } from 'lucide-react'
 
 interface RightSidebarProps {
   isOpen: boolean

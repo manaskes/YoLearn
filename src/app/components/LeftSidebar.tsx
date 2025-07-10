@@ -2,7 +2,8 @@ import Link from 'next/link'
 import {
   BookOpen, User, GraduationCap, ClipboardList,
   RefreshCw, BrainCircuit, Rocket, Notebook,
-  Twitter, Instagram, Youtube, Facebook, X
+  Twitter, Instagram, Youtube, Facebook, X,
+  LucideIcon
 } from 'lucide-react'
 import Image from 'next/image'
 
@@ -11,10 +12,20 @@ interface SidebarProps {
   onClose: () => void
 }
 
+type NavItem = {
+  name: string
+  icon: LucideIcon
+}
+
+type SocialItem = {
+  icon: LucideIcon
+  color: string
+}
+
 export default function LeftSidebar({ isOpen, onClose }: SidebarProps) {
   const activeTab = 'Learn'
 
-  const learningItems = [
+  const learningItems: NavItem[] = [
     { name: 'Plan', icon: BookOpen },
     { name: 'Learn', icon: GraduationCap },
     { name: 'Practice', icon: ClipboardList },
@@ -23,12 +34,12 @@ export default function LeftSidebar({ isOpen, onClose }: SidebarProps) {
     { name: 'Grow', icon: Rocket }
   ]
 
-  const shortcutItems = [
+  const shortcutItems: NavItem[] = [
     { name: 'My Notebook', icon: Notebook },
     { name: 'My Account', icon: User }
   ]
 
-  const socialIcons = [
+  const socialIcons: SocialItem[] = [
     { icon: Twitter, color: 'text-black' },
     { icon: Youtube, color: 'text-black' },
     { icon: Instagram, color: 'text-black' },
@@ -50,13 +61,10 @@ export default function LeftSidebar({ isOpen, onClose }: SidebarProps) {
       {/* Mobile Sidebar Overlay */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
-          {/* Overlay */}
           <div className="fixed inset-0 bg-black opacity-30" onClick={onClose} />
 
-          {/* Sidebar Panel */}
           <aside className="relative w-64 bg-white h-full shadow-lg z-50 flex flex-col">
             <div className="flex items-center justify-between px-4 py-3 border-b">
-              {/* Logo + Text */}
               <div className="flex items-center space-x-3">
                 <div className="flex flex-col">
                   <Image
@@ -69,8 +77,6 @@ export default function LeftSidebar({ isOpen, onClose }: SidebarProps) {
                   <p className="text-xs mt-2 text-gray-400 leading-tight">Your AI Learning Companion</p>
                 </div>
               </div>
-
-              {/* Close Button */}
               <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
                 <X className="h-5 w-5" />
               </button>
@@ -91,7 +97,6 @@ export default function LeftSidebar({ isOpen, onClose }: SidebarProps) {
   )
 }
 
-// Reusable sidebar content for both desktop and mobile
 function SidebarContent({
   activeTab,
   learningItems,
@@ -99,9 +104,9 @@ function SidebarContent({
   socialIcons
 }: {
   activeTab: string
-  learningItems: { name: string; icon: any }[]
-  shortcutItems: { name: string; icon: any }[]
-  socialIcons: { icon: any; color: string }[]
+  learningItems: NavItem[]
+  shortcutItems: NavItem[]
+  socialIcons: SocialItem[]
 }) {
   return (
     <div className="p-3 space-y-6 text-sm text-black">

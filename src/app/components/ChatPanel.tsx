@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { sendMessage } from '../hooks/useChat'
-import { Mic, Paperclip, Send, Menu } from 'lucide-react'
+import { Mic, Paperclip, Send } from 'lucide-react'
 import Image from 'next/image'
 
 interface ChatPanelProps {
